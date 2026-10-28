@@ -1,0 +1,483 @@
+\documentclass[pdf, unicode, 12pt, a4paper, oneside, fleqn]{article}
+
+\makeatletter
+\usepackage[utf8]{inputenc}
+\usepackage[T2B]{fontenc}
+\usepackage[english,russian]{babel}
+
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  left=2.54cm,
+  right=2.54cm,
+  top=2.54cm,
+  bottom=2.54cm,
+  headheight=0mm,
+  headsep=0mm,
+  footnotesep=0mm,
+  footskip=0mm,
+}
+
+\usepackage{nopageno}
+
+\usepackage{tempora}
+\renewcommand{\ttdefault}{cmtt}
+
+\usepackage{titlesec}
+\titleformat*{\section}{\large\bfseries}
+\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{0pt plus 2pt minus 2pt}
+\setcounter{secnumdepth}{0}
+
+\usepackage{enumitem}
+
+\frenchspacing
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{color}
+\usepackage{xcolor}
+
+\usepackage{hyperref}
+
+\newcommand{\MYhref}[3][blue]{\href{#2}{\color{#1}{#3}}}%
+
+\usepackage{listings}
+\usepackage{alltt}
+\usepackage{csquotes}
+\DeclareQuoteStyle{russian}
+	{\guillemotleft}{\guillemotright}[0.025em]
+	{\quotedblbase}{\textquotedblleft}
+\ExecuteQuoteOptions{style=russian}
+
+\usepackage{graphicx}
+
+\lstset{tabsize=2,
+	breaklines,
+	columns=fullflexible,
+	flexiblecolumns,
+	numbers=left,
+	numberstyle={\footnotesize},
+	extendedchars,
+	inputencoding=utf8}
+
+\def\@xobeysp{ }
+\def\verbatim@processline{\hspace{1.2cm}\raggedright\the\verbatim@line\par}
+
+\parindent=0pt
+\parskip=3pt
+
+\definecolor{lightgray}{gray}{0.9}
+
+\renewcommand{\thesubsection}{\arabic{subsection}}
+
+\lstdefinestyle{customc}{
+  belowcaptionskip=1\baselineskip,
+  breaklines=true,
+  frame=L,
+  xleftmargin=\parindent,
+  language=C,
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color{green!40!black},
+  commentstyle=\itshape\color{gray},
+  identifierstyle=\color{black},
+  stringstyle=\color{blue},
+}
+
+\lstdefinestyle{customasm}{
+  belowcaptionskip=1\baselineskip,
+  frame=L,
+  xleftmargin=\parindent,
+  language=[x86masm]Assembler,
+  basicstyle=\footnotesize\ttfamily,
+  commentstyle=\itshape\color{purple!40!black},
+}
+
+\lstset{escapechar=@,style=customc}
+\makeatother
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+
+
+\lstset{keepspaces=true}
+\lstset{literate=
+  {а}{{\cyra}}1 {б}{{\cyrb}}1 {в}{{\cyrv}}1 {г}{{\cyrg}}1 {д}{{\cyrd}}1 {е}{{\cyre}}1
+  {ё}{{\cyryo}}1 {ж}{{\cyrzh}}1 {з}{{\cyrz}}1 {и}{{\cyri}}1 {й}{{\cyrishrt}}1 {к}{{\cyrk}}1
+  {л}{{\cyrl}}1 {м}{{\cyrm}}1 {н}{{\cyrn}}1 {о}{{\cyro}}1 {п}{{\cyrp}}1 {р}{{\cyrr}}1
+  {с}{{\cyrs}}1 {т}{{\cyrt}}1 {у}{{\cyru}}1 {ф}{{\cyrf}}1 {х}{{\cyrh}}1 {ц}{{\cyrc}}1
+  {ч}{{\cyrch}}1 {ш}{{\cyrsh}}1 {щ}{{\cyrshch}}1 {ъ}{{\cyrhrdsn}}1 {ы}{{\cyrery}}1 {ь}{{\cyrsftsn}}1
+  {э}{{\cyrerev}}1 {ю}{{\cyryu}}1 {я}{{\cyrya}}1 {А}{{\CYRA}}1 {Б}{{\CYRB}}1 {В}{{\CYRV}}1
+  {Г}{{\CYRG}}1 {Д}{{\CYRD}}1 {Е}{{\CYRE}}1 {Ё}{{\CYRYO}}1 {Ж}{{\CYRZH}}1 {З}{{\CYRZ}}1
+  {И}{{\CYRI}}1 {Й}{{\CYRISHRT}}1 {К}{{\CYRK}}1 {Л}{{\CYRL}}1 {М}{{\CYRM}}1 {Н}{{\CYRN}}1
+  {О}{{\CYRO}}1 {П}{{\CYRP}}1 {Р}{{\CYRR}}1 {С}{{\CYRS}}1 {Т}{{\CYRT}}1 {У}{{\CYRU}}1
+  {Ф}{{\CYRF}}1 {Х}{{\CYRH}}1 {Ц}{{\CYRC}}1 {Ч}{{\CYRCH}}1 {Ш}{{\CYRSH}}1 {Щ}{{\CYRSHCH}}1
+  {Ъ}{{\CYRHRDSN}}1 {Ы}{{\CYRERY}}1 {Ь}{{\CYRSFTSN}}1 {Э}{{\CYREREV}}1 {Ю}{{\CYRYU}}1 {Я}{{\CYRYA}}1
+  {—}{{---}}1 {«}{{<<}}1 {»}{{>>}}1 {№}{{\textnumero}}1
+}
+
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+\large
+МОСКОВСКИЙ АВИАЦИОННЫЙ ИНСТИТУТ\\ (НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ)
+
+\vspace{20pt}
+
+Институт №8 <<Компьютерные науки и прикладная математика>>
+
+Кафедра 806 <<Вычислительная математика и программирование>>
+\end{center}
+
+\vspace{60pt}
+
+\begin{center}
+\bfseries
+\large
+Лабораторная работа \textnumero 3 \\по курсу \enquote{Операционные системы}
+
+\vspace{54pt}
+
+\end{center}
+
+\vfill
+
+\begin{flushright}
+\large
+\begin{tabular}{rl}
+Выполнил: & Яковлев А. С. \\
+Группа: & М8О-203БВ-25 \\
+Преподаватель: & Е.\,С.~Миронов \\
+\end{tabular}
+\end{flushright}
+
+\vspace{92pt}
+
+\begin{center}
+\large
+Москва, \the\year
+\end{center}
+\end{titlepage}
+
+\pagebreak
+
+\section{Условие}
+{\bfseries Цель работы:} приобретение практических навыков в
+\begin{itemize}[nosep]
+    \item управлении потоками в ОС;
+    \item обеспечении синхронизации между потоками.
+\end{itemize}
+
+{\bfseries Задание:} составить программу на языке Си, обрабатывающую данные
+в многопоточном режиме. При обработке использовать стандартные средства создания
+потоков операционной системы (Windows/Unix). Ограничение максимального количества
+потоков, работающих в один момент времени, должно быть задано ключом запуска программы.
+Продемонстрировать количество потоков, используемое программой, с помощью стандартных
+средств операционной системы. Привести исследование зависимости ускорения и эффективности
+алгоритма от входных данных и количества потоков и объяснить полученные результаты.
+
+{\bfseries Вариант:} 9. Рассчитать детерминант матрицы (используя определение детерминанта).
+
+\section{Метод решения}
+
+\subsection*{Определитель по определению}
+
+Определитель квадратной матрицы $A = (a_{ij})$ порядка $n$ по определению равен
+\[
+    \det A = \sum_{\sigma \in S_n} \operatorname{sgn}(\sigma)\, a_{0,\sigma(0)}\, a_{1,\sigma(1)} \cdots a_{n-1,\sigma(n-1)},
+\]
+где сумма берётся по всем $n!$ перестановкам $\sigma$ множества $\{0, \dots, n-1\}$.
+Каждое слагаемое~--- произведение $n$ элементов, взятых по одному из каждой строки
+и каждого столбца. Знак перестановки определяется числом инверсий~--- пар $i < j$,
+для которых $\sigma(i) > \sigma(j)$: при чётном числе инверсий $\operatorname{sgn}(\sigma) = +1$,
+при нечётном~--- $-1$.
+
+Перестановки перебираются рекурсивно: функция \texttt{go}
+выбирает для очередной строки свободный столбец, помечает его занятым, домножает
+накопленное произведение на выбранный элемент и переходит к следующей строке.
+Число инверсий накапливается по ходу: при выборе столбца $c$ в строке $k$ новых
+инверсий столько, сколько уже занятых столбцов больше $c$ (они стоят в перестановке
+раньше и правее). Когда заполнены все строки, произведение возвращается со знаком,
+определяемым чётностью числа инверсий.
+
+\subsection*{Распараллеливание}
+
+Слагаемые суммы независимы, поэтому работу можно разделить между потоками без обмена
+данными по ходу вычислений. Вся сумма разбита на $n^2$ задач: задача с номером $t$
+фиксирует столбцы первых двух строк $c_0 = \lfloor t / n \rfloor$, $c_1 = t \bmod n$
+и перебирает все перестановки с таким началом. Задачи с $c_0 = c_1$ пусты, остальные
+$n(n-1)$ задач содержат по $(n-2)!$ слагаемых. Каждая перестановка попадает ровно в одну
+задачу, поэтому сумма результатов всех задач равна определителю. Разбиение по двум строкам,
+а не по одной, даёт мелкие задачи (при $n = 12$~--- 132 непустые), которые равномернее
+распределяются по потокам.
+
+Задачи раздаются динамически: общий счётчик \texttt{next\_task} указывает номер следующей
+свободной задачи. Освободившийся поток под мьютексом берёт номер и увеличивает счётчик.
+Так потоки, которые планировщик ОС выполняет медленнее (например, на энергоэффективных
+ядрах), берут меньше задач и не задерживают остальных.
+
+Каждый поток накапливает сумму своих задач в локальной переменной и по окончании работы
+один раз прибавляет её к общему результату под тем же мьютексом.
+
+\subsection*{Ограничение числа потоков}
+
+Ключ \texttt{-t P} задаёт общее число одновременно работающих потоков, включая главный.
+Программа создаёт $P - 1$ потоков функцией \texttt{pthread\_create}, а главный поток
+выполняет ту же функцию \texttt{worker} наравне с ними. При $P = 1$ дополнительных
+потоков не создаётся. Затем главный поток ожидает завершения остальных (\texttt{pthread\_join}).
+
+\section{Описание программы}
+
+\subsection*{Структура проекта}
+
+\begin{center}
+\begin{tabular}{|l|p{11cm}|}
+\hline
+\textbf{Файл} & \textbf{Содержимое} \\ \hline
+\texttt{CMakeLists.txt} & сборка: библиотека \texttt{detlib} и программа \texttt{det}, подключение pthreads \\ \hline
+\texttt{src/main.c} & разбор ключей запуска, получение матрицы, замер времени, вывод результата \\ \hline
+\texttt{src/matrix.c}, \texttt{.h} & чтение матрицы из файла, генерация случайной матрицы, печать \\ \hline
+\texttt{src/det.c}, \texttt{.h} & вычисление определителя, управление потоками и синхронизация \\ \hline
+\texttt{tests/m1..m4.txt} & тестовые матрицы с известным определителем \\ \hline
+\end{tabular}
+\end{center}
+
+Матрица $n \times n$ хранится в одномерном массиве \texttt{double} по строкам:
+элемент $a_{ij}$ находится по индексу \texttt{i * n + j}.
+
+\subsection*{Основные функции}
+
+\begin{itemize}
+    \item \texttt{double *matrix\_read(const char *filename, int *n)}~--- читает матрицу из файла, возвращает массив или \texttt{NULL} при ошибке.
+    \item \texttt{double *matrix\_random(int n)}~--- создаёт матрицу из случайных целых
+          чисел от $-9$ до $9$. Генератор инициализируется константой (\texttt{srand(1)}),
+          поэтому при одинаковом $n$ матрица всегда одна и та же, что делает замеры
+          сопоставимыми.
+    \item \texttt{double go(int row, int *used, double prod, int inv)}~--- рекурсивно
+          перебирает перестановки для строк начиная с \texttt{row}, возвращает сумму
+          соответствующих слагаемых.
+    \item \texttt{double do\_task(int t)}~--- фиксирует столбцы первых двух строк
+          по номеру задачи и вызывает \texttt{go} со строки~2.
+    \item \texttt{void *worker(void *arg)}~--- функция потока: в цикле берёт задачи
+          из общей очереди, накапливает локальную сумму, в конце добавляет её к результату.
+    \item \texttt{double det\_calc(double *a, int n, int threads)}~--- инициализирует общие
+          данные, создаёт $P-1$ потоков, выполняет \texttt{worker} в главном потоке,
+          дожидается остальных и возвращает определитель.
+\end{itemize}
+
+\subsection*{Ключи запуска}
+
+\begin{tabular}{ll}
+\texttt{-t P} & число потоков (обязательный, от 1 до 256) \\
+\texttt{-f F} & прочитать матрицу из файла \texttt{F} \\
+\texttt{-n N} & сгенерировать случайную матрицу $N \times N$ ($N \le 15$) \\
+\texttt{-p}   & вывести матрицу \\
+\end{tabular}
+
+Программа печатает свой PID, определитель и время вычисления.
+
+\subsection*{Использованные источники}
+{\sloppy
+\begin{enumerate}[nosep]
+    \item Таненбаум~Э., Бос~Х. Современные операционные системы.~--- СПб.:
+\end{enumerate}
+}
+
+\section{Результаты}
+
+\subsection*{Конфигурация}
+
+\begin{tabular}{ll}
+Процессор: & M3 Pro \\
+Ядер всего: & 11 \\
+ОС: & MacOS \\
+\end{tabular}
+
+\subsection*{Проверка корректности}
+
+Программа запускалась на матрицах с заранее известным определителем при разном числе
+потоков. Ожидаемые значения.
+
+\begin{center}
+\begin{tabular}{|l|r|r|r|r|r|}
+\hline
+\textbf{Матрица} & \textbf{Ожидается} & $P=1$ & $P=2$ & $P=4$ & $P=8$ \\ \hline
+\texttt{m1.txt} ($1\times1$) & 7      & 7 & 7 & 7 & 7 \\ \hline
+\texttt{m2.txt} ($2\times2$) & $-14$  & -14 & -14 & -14 & -14 \\ \hline
+\texttt{m3.txt} ($3\times3$) & $-306$ & -306 & -306 & -306 & -306 \\ \hline
+\texttt{m4.txt} ($4\times4$) & 30     & 30 & 30 & 30 & 30 \\ \hline
+\end{tabular}
+\end{center}
+
+Результат не зависит от числа потоков, что подтверждает отсутствие гонок данных:
+каждая задача вычисляется ровно один раз, а общий результат изменяется только под мьютексом.
+
+\subsection*{Демонстрация числа потоков}
+
+Программа была запущена командой \texttt{./det -t 4 -n 13}, во время вычислений
+число её потоков просмотрено стандартными средствами ОС. Получено 4 потока: главный
+и три созданных.
+
+\begin{lstlisting}[language={},numbers=none,escapechar={},columns=fixed,basicstyle=\footnotesize\ttfamily]
+artem@MacBook-Pro-Artem-3 lab3 % ps -M -p 45502
+USER    PID   TT   %CPU STAT PRI     STIME     UTIME COMMAND
+artem 45502 s000  100.0 R    31T   0:00.01   0:04.50 ./cmake-build-debug/det -t 4 -n 13
+      45502       100.0 R    31T   0:00.01   0:04.49
+      45502       100.0 R    31T   0:00.01   0:04.49
+      45502       100.0 R    31T   0:00.01   0:04.49
+\end{lstlisting}
+
+\subsection*{Исследование ускорения и эффективности}
+
+Замеры выполнялись на случайных целочисленных матрицах порядка $n = 8 \dots 12$
+(одинаковых для всех $P$) при числе потоков $P = 1, 2, 4, 8, 16$. Каждый замер
+повторялся 5 раз, в таблицу занесена медиана.
+
+Ускорение $S(P) = T_1 / T_P$, эффективность $E(P) = S(P) / P \cdot 100\%$,
+где $T_1$~--- время при одном потоке, $T_P$~--- при $P$ потоках.
+
+\begin{center}
+Время $T_P$, с
+
+\begin{tabular}{|c|r|r|r|r|r|}
+\hline
+$P$ & $n=8$ & $n=9$ & $n=10$ & $n=11$ & $n=12$ \\ \hline
+1  & 0.000714 & 0.006422 & 0.0665 & 0.7614 & 9.696 \\ \hline
+2  & 0.000399 & 0.003333 & 0.0341 & 0.3911 & 4.849 \\ \hline
+4  & 0.000236 & 0.001750 & 0.0179 & 0.2024 & 2.487 \\ \hline
+8  & 0.000204 & 0.001220 & 0.0118 & 0.1396 & 1.791 \\ \hline
+16 & 0.000216 & 0.001140 & 0.0107 & 0.1193 & 1.558 \\ \hline
+\end{tabular}
+
+\vspace{8pt}
+Ускорение $S(P)$
+
+\begin{tabular}{|c|r|r|r|r|r|}
+\hline
+$P$ & $n=8$ & $n=9$ & $n=10$ & $n=11$ & $n=12$ \\ \hline
+1  & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\ \hline
+2  & 1.79 & 1.93 & 1.95 & 1.95 & 2.00 \\ \hline
+4  & 3.03 & 3.67 & 3.72 & 3.76 & 3.90 \\ \hline
+8  & 3.50 & 5.26 & 5.66 & 5.45 & 5.41 \\ \hline
+16 & 3.31 & 5.63 & 6.22 & 6.38 & 6.22 \\ \hline
+\end{tabular}
+
+\vspace{8pt}
+Эффективность $E(P)$, \%
+
+\begin{tabular}{|c|r|r|r|r|r|}
+\hline
+$P$ & $n=8$ & $n=9$ & $n=10$ & $n=11$ & $n=12$ \\ \hline
+1  & 100.0 & 100.0 & 100.0 & 100.0 & 100.0 \\ \hline
+2  & 89.5 & 96.3 & 97.6 & 97.3 & 100.0 \\ \hline
+4  & 75.6 & 91.7 & 93.0 & 94.0 & 97.5 \\ \hline
+8  & 43.8 & 65.8 & 70.8 & 68.2 & 67.7 \\ \hline
+16 & 20.7 & 35.2 & 38.9 & 39.9 & 38.9 \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.68\textwidth, height=7cm,
+  xmode=log, log basis x=2,
+  xtick={1,2,4,8,16}, xticklabels={1,2,4,8,16},
+  xmin=0.9, xmax=18, ymin=0, ymax=8,
+  xlabel={Число потоков $P$}, ylabel={Ускорение $S$},
+  grid=major, legend pos=outer north east, legend cell align=left,
+  unbounded coords=jump, cycle list name=color list,
+  every axis plot/.append style={thick, mark=*},
+]
+  \addplot[dashed, gray, domain=1:16, samples=2, mark=none] {x};
+  \addlegendentry{идеал $S=P$}
+  %                     P=1      P=2      P=4      P=8      P=16
+    \addplot coordinates {(1,1.00) (2,1.79) (4,3.03) (8,3.50) (16,3.31)}; \addlegendentry{$n=8$}
+  \addplot coordinates {(1,1.00) (2,1.93) (4,3.67) (8,5.26) (16,5.63)}; \addlegendentry{$n=9$}
+  \addplot coordinates {(1,1.00) (2,1.95) (4,3.72) (8,5.66) (16,6.22)}; \addlegendentry{$n=10$}
+  \addplot coordinates {(1,1.00) (2,1.95) (4,3.76) (8,5.45) (16,6.38)}; \addlegendentry{$n=11$}
+  \addplot coordinates {(1,1.00) (2,2.00) (4,3.90) (8,5.41) (16,6.22)}; \addlegendentry{$n=12$}
+\end{axis}
+\end{tikzpicture}
+
+Рис. 1. Зависимость ускорения от числа потоков
+
+\vspace{12pt}
+
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.68\textwidth, height=7cm,
+  xmode=log, log basis x=2,
+  xtick={1,2,4,8,16}, xticklabels={1,2,4,8,16},
+  xmin=0.9, xmax=18, ymin=0, ymax=110,
+  xlabel={Число потоков $P$}, ylabel={Эффективность $E$, \%},
+  grid=major, legend pos=outer north east, legend cell align=left,
+  unbounded coords=jump, cycle list name=color list,
+  every axis plot/.append style={thick, mark=*},
+]
+  \addplot[dashed, gray, domain=1:16, samples=2, mark=none] {100};
+  \addlegendentry{идеал $E=100\%$}
+  %                       P=1        P=2      P=4      P=8      P=16
+  \addplot coordinates {(1,100.0) (2,89.5) (4,75.6) (8,43.8) (16,20.7)}; \addlegendentry{$n=8$}
+  \addplot coordinates {(1,100.0) (2,96.3) (4,91.7) (8,65.8) (16,35.2)}; \addlegendentry{$n=9$}
+  \addplot coordinates {(1,100.0) (2,97.6) (4,93.0) (8,70.8) (16,38.9)}; \addlegendentry{$n=10$}
+  \addplot coordinates {(1,100.0) (2,97.3) (4,94.0) (8,68.2) (16,39.9)}; \addlegendentry{$n=11$}
+  \addplot coordinates {(1,100.0) (2,100.0) (4,97.5) (8,67.7) (16,38.9)}; \addlegendentry{$n=12$}
+\end{axis}
+\end{tikzpicture}
+
+Рис. 2. Зависимость эффективности от числа потоков
+\end{center}
+
+\section{Выводы}
+
+В ходе работы была написана программа на языке Си, вычисляющая определитель матрицы
+по определению~--- как сумму $n!$ слагаемых по всем перестановкам~--- в многопоточном
+режиме с использованием POSIX Threads. Работа разбивается на $n^2$ независимых задач,
+которые потоки берут из общей очереди; доступ к общим данным (счётчику задач и результату)
+защищён мьютексом. Число потоков ограничивается ключом запуска с учётом главного потока,
+что подтверждено средствами ОС. Корректность проверена на матрицах с известным
+определителем: результат не зависит от числа потоков.
+
+Исследование на процессоре Apple M3 Pro (5 производительных и 6 энергоэффективных ядер)
+показало следующее.
+
+\begin{enumerate}
+    \item \textbf{До 4 потоков ускорение почти линейное.} При $n = 12$ получено
+          $S(2) = 2{,}00$ и $S(4) = 3{,}90$ (эффективность 100\% и 97,5\%). Задачи независимы,
+          мьютекс захватывается лишь на мгновение при выдаче задачи, а матрица (около 1~КБ)
+          целиком помещается в кэш каждого ядра, поэтому задача ограничена только
+          вычислениями. Все потоки при этом работают на производительных ядрах.
+
+    \item \textbf{Неоднородные ядра.} При $P = 8$ ускорение растёт заметно слабее
+          ($S = 5{,}41$, $E = 67{,}7\%$ при $n = 12$): производительных ядер только 5,
+          и остальные потоки выполняются на более медленных энергоэффективных ядрах.
+
+    \item \textbf{Потоков больше, чем ядер.} При $P = 16$, что больше 11 ядер, ускорение
+          выходит на плато: $S \approx 6{,}2$--$6{,}4$ для $n \ge 10$. Это близко к
+          предельной производительности всех ядер процессора. Лишние потоки лишь делят
+          процессорное время, поэтому эффективность падает до 35--40\%.
+
+    \item \textbf{Малые матрицы.} При $n = 8$ (40\,320 слагаемых) всё вычисление занимает
+          около 0,7~мс, и затраты на создание и завершение потоков становятся заметными.
+          Поэтому эффективность ниже уже при $P = 4$ (75,6\%), ускорение не превышает 3,5,
+          а при $P = 16$ программа даже немного замедляется по сравнению с $P = 8$
+          (0,216~мс против 0,204~мс). По закону Амдала доля последовательной части
+          (создание потоков, ожидание их завершения) здесь велика. С ростом $n$ эта доля
+          уменьшается, и эффективность растёт.
+
+\end{enumerate}
+
+Таким образом, задача хорошо распараллеливается: независимые слагаемые и минимальная
+синхронизация дают почти линейное ускорение, пока потоки работают на производительных
+ядрах, а его предел определяется числом и типом ядер процессора и накладными расходами
+на потоки при малом объёме работы.
+
+\pagebreak
+
+\end{document}
